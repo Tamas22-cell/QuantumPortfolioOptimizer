@@ -1,3 +1,4 @@
+![Quantum Portfolio Optimizer](quantum_portfolio_optimizer.png)
 # Quantum Portfolio Optimizer with QAOA & Discord
 
 Hybrid quantum-classical portfolio optimization project built with Python, Qiskit and QAOA, using real financial market data and Discord integration.
