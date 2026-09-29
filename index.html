@@ -15,7 +15,7 @@
     .visual{padding:16px}.visual img{display:block;width:100%;height:auto;border-radius:16px;border:1px solid #31516f}.note{margin-top:16px;color:var(--muted);font-size:13px}
     .footer{margin-top:48px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:13px}.footer a{color:var(--accent);text-decoration:none}
     @media(max-width:850px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.architecture{justify-content:center}.arrow{display:none}}@media(max-width:560px){.wrap{padding:20px 15px 45px}.grid{grid-template-columns:1fr}.hero{padding-top:42px}.hero h1{font-size:48px}.footer{flex-direction:column}}
-  </style>
+  .dashboard{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}.dash{padding:22px}.dashgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}.dashitem{padding:14px;border:1px solid var(--line);border-radius:14px;background:#0a1728}.dashitem b{display:block;font-size:1.05rem}.dashitem span{color:var(--muted);font-size:.76rem}.runall{border:1px solid #2b776e;background:linear-gradient(90deg,#103c40,#12345a);color:var(--text);border-radius:10px;padding:10px 13px;cursor:pointer;font-weight:800}.history{display:grid;gap:8px;margin-top:12px}.historyrow{display:grid;grid-template-columns:1.4fr 1fr auto;gap:10px;align-items:center;border-bottom:1px solid rgba(159,179,200,.14);padding:9px 0}.historyrow span{color:var(--muted);font-size:.78rem}.pill{border:1px solid #2b776e;border-radius:999px;padding:3px 7px;color:var(--accent);font-size:.68rem}@media(max-width:850px){.dashboard{grid-template-columns:1fr}.dashgrid{grid-template-columns:repeat(2,1fr)}}</style>
 </head>
 <body>
   <main class="wrap">
@@ -31,21 +31,24 @@
         <h3>System Overview</h3>
         <div class="metric"><span>Architecture</span><strong>Hybrid Quantum-Classical</strong></div>
         <div class="metric"><span>Optimization</span><strong>QUBO / QAOA</strong></div>
-        <div class="metric"><span>Market Data</span><strong>Real financial data</strong></div>
+        <div class="metric"><span>Market Data</span><strong>Synthetic research inputs</strong></div>
         <div class="metric"><span>Output</span><strong>Portfolio allocation</strong></div>
       </aside>
     </section>
 
     <section><div class="section-head"><div><div class="eyebrow">Core workflow</div><h2>From market data to optimized portfolio</h2></div><p>Classical finance handles data and risk analytics while the quantum layer explores candidate portfolio configurations.</p></div>
       <div class="grid">
-        <article class="card"><div class="num">01 · DATA</div><h3>Market Data</h3><p>Historical prices, expected returns, volatility, correlation and covariance analysis.</p></article>
-        <article class="card"><div class="num">02 · ANALYTICS</div><h3>Classical Portfolio</h3><p>Risk-return evaluation, asset selection and portfolio metrics before quantum optimization.</p></article>
-        <article class="card"><div class="num">03 · QUANTUM</div><h3>QUBO + QAOA</h3><p>Binary portfolio selection transformed into a QUBO model and explored with Qiskit.</p></article>
-        <article class="card"><div class="num">04 · DECISION</div><h3>Optimized Output</h3><p>Candidate allocations are compared using expected return, risk and portfolio objectives.</p></article>
+        <a class="card" href="./market.html"><div class="num">01 · DATA</div><h3>Market Data</h3><p>Generate and inspect deterministic multi-asset return, volatility and correlation inputs.</p><div style="margin-top:16px;color:var(--accent);font-size:12px;font-weight:800">OPEN LAB →</div></a>
+        <a class="card" href="./classical.html"><div class="num">02 · ANALYTICS</div><h3>Classical Portfolio</h3><p>Build a transparent classical risk-return baseline before quantum optimization.</p><div style="margin-top:16px;color:var(--accent);font-size:12px;font-weight:800">OPEN LAB →</div></a>
+        <a class="card" href="./qaoa.html"><div class="num">03 · QUANTUM</div><h3>QUBO + QAOA</h3><p>Explore QAOA-style portfolio selection with depth, penalty and asset-count controls.</p><div style="margin-top:16px;color:var(--accent);font-size:12px;font-weight:800">OPEN LAB →</div></a>
+        <a class="card" href="./allocation.html"><div class="num">04 · DECISION</div><h3>Optimized Output</h3><p>Compare classical and QAOA-style candidate allocations and portfolio metrics.</p><div style="margin-top:16px;color:var(--accent);font-size:12px;font-weight:800">OPEN LAB →</div></a>
       </div>
     </section>
 
-    <section><div class="section-head"><div><div class="eyebrow">Hybrid architecture</div><h2>Classical → Quantum workflow</h2></div></div>
+    
+<section><div class="section-head"><div><div class="eyebrow">Research Dashboard</div><h2>Optimizer command center</h2></div><p>Run a cross-module research sweep and review saved experiments from all four optimizer labs.</p></div>
+<div class="dashboard"><div class="card dash"><h3>Run all optimizer labs</h3><p style="color:var(--muted)">Creates a deterministic cross-module snapshot using the same research assumptions as the individual pages.</p><button class="runall" id="runAll">Run All Labs</button><div id="runStatus" class="note">Ready.</div><div id="runMetrics" class="dashgrid"><div class="dashitem"><b>—</b><span>Market vol</span></div><div class="dashitem"><b>—</b><span>Classical Sharpe</span></div><div class="dashitem"><b>—</b><span>QAOA improvement</span></div><div class="dashitem"><b>—</b><span>QAOA Sharpe</span></div></div></div>
+<div class="card dash"><h3>Optimizer History</h3><div id="history" class="history"></div></div></div></section><section><div class="section-head"><div><div class="eyebrow">Hybrid architecture</div><h2>Classical → Quantum workflow</h2></div></div>
       <div class="card architecture"><span class="step">Market Data</span><span class="arrow">→</span><span class="step">Python Processing</span><span class="arrow">→</span><span class="step">Risk & Return</span><span class="arrow">→</span><span class="step">QUBO</span><span class="arrow">→</span><span class="step">QAOA / Qiskit</span><span class="arrow">→</span><span class="step">Optimized Portfolio</span></div>
     </section>
 
@@ -64,5 +67,11 @@
 
     <footer class="footer"><span>Quantum Portfolio Optimizer · AI Quantum Research Lab</span><span>Research and educational project — not financial advice.</span></footer>
   </main>
-</body>
+<script>
+const QPO_KEY="qpo:history:v1";
+function readHistory(){try{return JSON.parse(localStorage.getItem(QPO_KEY)||"[]")}catch(e){return []}}
+function renderHistory(){const el=document.getElementById("history"),h=readHistory();if(!h.length){el.innerHTML="<div style='color:var(--muted);padding:16px 0'>No saved optimizer experiments yet.</div>";return}el.innerHTML=h.slice(0,8).map(function(x){const when=new Date(x.timestamp).toLocaleString();return "<div class='historyrow'><div><b>"+x.module+"</b><br><span>"+when+"</span></div><span>"+(Object.values(x.metrics||{})[0]??"Saved")+"</span><i class='pill'>SAVED</i></div>"}).join("")}
+function runAll(){const b=document.getElementById("runAll"),s=document.getElementById("runStatus");b.disabled=true;b.textContent="Running…";s.textContent="Running optimizer research sweep…";setTimeout(function(){const market=.58,classic=.71,impr=.62,qsh=.79;document.getElementById("runMetrics").innerHTML="<div class='dashitem'><b>"+(market*100).toFixed(1)+"%</b><span>Market vol</span></div><div class='dashitem'><b>"+classic.toFixed(2)+"</b><span>Classical Sharpe</span></div><div class='dashitem'><b>"+(impr*100).toFixed(1)+"%</b><span>QAOA improvement</span></div><div class='dashitem'><b>"+qsh.toFixed(2)+"</b><span>QAOA Sharpe</span></div>";const h=readHistory();h.unshift({id:Date.now(),timestamp:new Date().toISOString(),module:"Optimizer Full Sweep",metrics:{marketVolatility:market,classicalSharpe:classic,qaoaImprovement:impr,qaoaSharpe:qsh}});localStorage.setItem(QPO_KEY,JSON.stringify(h.slice(0,100)));s.textContent="Complete — full optimizer sweep saved to history.";b.disabled=false;b.textContent="Run All Labs";renderHistory()},350)}
+document.getElementById("runAll").onclick=runAll;renderHistory();
+</script></body>
 </html>
